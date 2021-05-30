@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <title>Můj blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 <body>
-    <h1>Tady bude můj blog…</h1>
+   <h3>Seznam navštívených míst</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Název</th>
+                <th scope="col">Perex</th>
+                <th scope="col">Datum publikování</th>
+                <th scope="col">Autor</th>
+            </tr>
+            </thead>
+            <tbody>
+            <form th:action="@{/}" method="get">
+            <tr th:each="post: ${post}">
+                <td th:text="${post.title}">Jan</td>
+                <td th:text="${post.perex}">Hus</td>
+                <td th:text="${#temporals.format(post.published, 'd. MMMM yyyy')}">1370</td>
+                <td th:text="${post.author}">Hus</td>
+                <td> <a th:href="@{/post/(slug=${post.slug})}" type="button" class="btn btn-primary">Přečíst</a></td>
+            </form>
+            </tr>
+            </tbody>
+        </table>
 </body>
 </html>
